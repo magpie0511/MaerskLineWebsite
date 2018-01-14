@@ -1,0 +1,34 @@
+﻿@using MaerskLineWebsite.Controllers
+@using MaerskLineWebsite.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ship</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Ship ID</th>
+        <th>Ship Name</th>
+        <th>No. of Container</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var ship in Model)
+    {
+        <tr>
+            <td>@ship.Id</td>
+            <td>@ship.Name</td>
+            <td>@ship.ContainerNo</td>
+
+            <td>@Html.ActionLink("Edit", "Edit", new { id = ship.Id })</td>
+
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+﻿@model MaerskLineWebsite.Models.Schedule
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Schedule</h2>
+
+@using (Html.BeginForm("Create", "Schedules", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Destination)
+        @Html.TextBoxFor(m => m.Destination, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Origin)
+        @Html.TextBoxFor(m => m.Origin, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ArrivalDateTime)
+        @Html.TextBoxFor(m => m.ArrivalDateTime, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DepartureDateTime)
+        @Html.TextBoxFor(m => m.DepartureDateTime, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">submit</button>
+
+}
