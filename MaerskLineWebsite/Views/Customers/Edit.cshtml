@@ -1,0 +1,36 @@
+﻿@model MaerskLineWebsite.Models.Customer
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Customer</h2>
+
+@using (Html.BeginForm("Update", "Customers", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.FName)
+        @Html.TextBoxFor(c => c.FName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.LName)
+        @Html.TextBoxFor(c => c.LName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.Email)
+        @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.ContactNo)
+        @Html.TextBoxFor(c => c.ContactNo, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(c => c.CId)
+
+    <button type="submit" class="btn btn-primary">SAVE</button>
+
+}

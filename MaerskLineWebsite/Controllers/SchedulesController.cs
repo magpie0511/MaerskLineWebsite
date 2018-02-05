@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MaerskLineWebsite.Models;
 
+
 namespace MaerskLineWebsite.Controllers
 {
     public class SchedulesController : Controller
@@ -45,9 +46,9 @@ namespace MaerskLineWebsite.Controllers
             return View(schedules);
         }
 
-        public ActionResult Details(int Id)
+        public ActionResult Details(int id)
         {
-            var schedule = _context.Schedules.SingleOrDefault(s => s.Id == Id);
+            var schedule = _context.Schedules.SingleOrDefault(s => s.ScheduleId == id);
 
             if (schedule == null)
             {
@@ -57,9 +58,9 @@ namespace MaerskLineWebsite.Controllers
             return View();
         }
 
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int id)
         {
-            var schedule = _context.Schedules.SingleOrDefault(s=>s.Id==Id);
+            var schedule = _context.Schedules.SingleOrDefault(s=>s.ScheduleId==id);
 
             if (schedule == null)
             {
@@ -67,13 +68,31 @@ namespace MaerskLineWebsite.Controllers
             }
 
             Schedule scheduleModelSchedule = new Schedule();
-            scheduleModelSchedule.Id = schedule.Id;
+            scheduleModelSchedule.ScheduleId = schedule.ScheduleId;
             scheduleModelSchedule.Destination = schedule.Destination;
             scheduleModelSchedule.Origin = schedule.Origin;
             scheduleModelSchedule.DepartureDateTime = schedule.DepartureDateTime;
             scheduleModelSchedule.ArrivalDateTime = schedule.ArrivalDateTime;
 
             return View(scheduleModelSchedule);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Schedule schedule)
+        {
+            var scheDB = _context.Schedules.SingleOrDefault(s => s.ScheduleId == schedule.ScheduleId);
+
+            scheDB.ScheduleId = schedule.ScheduleId;
+            scheDB.Destination = schedule.Destination;
+            scheDB.Origin = schedule.Origin;
+            scheDB.DepartureDateTime = schedule.DepartureDateTime;
+            scheDB.ArrivalDateTime = schedule.ArrivalDateTime;
+            
+            _context.SaveChanges();
+
+            var scheList = _context.Schedules.ToList();
+
+            return View("Index", scheList);
         }
     }
 }

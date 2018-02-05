@@ -9,7 +9,8 @@ namespace MaerskLineWebsite.Models
 {
     public class Schedule
     {
-        public int Id { get; set; }
+        [Key]
+        public int ScheduleId { get; set; }
 
         [Required]
         [StringLength(255)]

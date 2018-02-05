@@ -7,13 +7,13 @@ namespace MaerskLineWebsite.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ShipMigrationContainerToInt : IMigrationMetadata
+    public sealed partial class BookingMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ShipMigrationContainerToInt));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(BookingMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801140612080_ShipMigrationContainerToInt"; }
+            get { return "201801151230331_BookingMigration"; }
         }
         
         string IMigrationMetadata.Source

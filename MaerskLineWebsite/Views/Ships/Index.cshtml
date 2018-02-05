@@ -22,11 +22,11 @@
     @foreach (var ship in Model)
     {
         <tr>
-            <td>@ship.Id</td>
+            <td>@ship.ShipId</td>
             <td>@ship.Name</td>
             <td>@ship.ContainerNo</td>
 
-            <td>@Html.ActionLink("Edit", "Edit", new { id = ship.Id })</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = ship.ShipId })</td>
 
         </tr>
     }

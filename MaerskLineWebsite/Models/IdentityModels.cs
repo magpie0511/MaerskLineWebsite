@@ -24,6 +24,12 @@ namespace MaerskLineWebsite.Models
 
         public DbSet<Ship> Ships { get; set; }
 
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<Container> Containers { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

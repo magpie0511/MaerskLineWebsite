@@ -19,15 +19,41 @@
         @Html.TextBoxFor(m => m.Origin, new { @class = "form-control" })
     </div>
 
-    <div class="form-group">
+    <div class="form-group input-group date">
         @Html.LabelFor(m => m.ArrivalDateTime)
-        @Html.TextBoxFor(m => m.ArrivalDateTime, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.ArrivalDateTime, new {id="arrivalTime", @class = "form-control" })
     </div>
 
-    <div class="form-group">
+    <div class="form-group input-group date">
         @Html.LabelFor(m => m.DepartureDateTime)
-        @Html.TextBoxFor(m => m.DepartureDateTime, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.DepartureDateTime, new {id="departureTime", @class = "form-control" })
     </div>
+
     <button type="submit" class="btn btn-primary">submit</button>
 
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $("#departureTime").datetimepicker({
+                minDate: new Date()
+                //format: "DD/MM/YYYY h:mm A"
+            });
+            $('#arrivalTime').datetimepicker({
+                useCurrent: false //Important! See issue #1075
+                //format: "DD/MM/YYYY h:mm A"
+            });
+            $("#departureTime").on("dp.change",
+                function (e) {
+                    $('#arrivalTime').data("DateTimePicker").minDate(e.date);
+                });
+            $("#arrivalTimePicker").on("dp.change",
+                function (e) {
+                    $('#departureTime').data("DateTimePicker").maxDate(e.date);
+                });
+        });
+    </script>
 }

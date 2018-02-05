@@ -196,6 +196,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
+    <Compile Include="Controllers\ContainersController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
@@ -207,34 +210,35 @@
     <Compile Include="Migrations\201801131435534_ScheduleMigration.Designer.cs">
       <DependentUpon>201801131435534_ScheduleMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801131447188_ScheduleMigration1.cs" />
-    <Compile Include="Migrations\201801131447188_ScheduleMigration1.Designer.cs">
-      <DependentUpon>201801131447188_ScheduleMigration1.cs</DependentUpon>
+    <Compile Include="Migrations\201801151230331_BookingMigration.cs" />
+    <Compile Include="Migrations\201801151230331_BookingMigration.Designer.cs">
+      <DependentUpon>201801151230331_BookingMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801140516553_ShipMigration.cs" />
-    <Compile Include="Migrations\201801140516553_ShipMigration.Designer.cs">
-      <DependentUpon>201801140516553_ShipMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201801180812224_BookingMigration-force.cs" />
+    <Compile Include="Migrations\201801180812224_BookingMigration-force.Designer.cs">
+      <DependentUpon>201801180812224_BookingMigration-force.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801140519419_ShipMigration1.cs" />
-    <Compile Include="Migrations\201801140519419_ShipMigration1.Designer.cs">
-      <DependentUpon>201801140519419_ShipMigration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801140612080_ShipMigrationContainerToInt.cs" />
-    <Compile Include="Migrations\201801140612080_ShipMigrationContainerToInt.Designer.cs">
-      <DependentUpon>201801140612080_ShipMigrationContainerToInt.cs</DependentUpon>
+    <Compile Include="Migrations\201801180814340_NewBookingMigration.cs" />
+    <Compile Include="Migrations\201801180814340_NewBookingMigration.Designer.cs">
+      <DependentUpon>201801180814340_NewBookingMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Container.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\Ship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ViewModelClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-slate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -248,16 +252,20 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\datetimepicker-setup.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -270,7 +278,6 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -318,6 +325,16 @@
     <Content Include="Views\Ships\Edit.cshtml" />
     <Content Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Schedules\Edit.cshtml" />
+    <Content Include="Views\Customers\New.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Containers\Index.cshtml" />
+    <Content Include="Views\Containers\New.cshtml" />
+    <Content Include="Views\Bookings\SelectSchedule.cshtml" />
+    <Content Include="Views\Bookings\SelectShip.cshtml" />
+    <Content Include="Views\Bookings\SelectCustomer.cshtml" />
+    <Content Include="Views\Bookings\SelectContainer.cshtml" />
+    <Content Include="Views\Bookings\ViewBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,17 +348,14 @@
     <EmbeddedResource Include="Migrations\201801131435534_ScheduleMigration.resx">
       <DependentUpon>201801131435534_ScheduleMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801131447188_ScheduleMigration1.resx">
-      <DependentUpon>201801131447188_ScheduleMigration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801151230331_BookingMigration.resx">
+      <DependentUpon>201801151230331_BookingMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801140516553_ShipMigration.resx">
-      <DependentUpon>201801140516553_ShipMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801180812224_BookingMigration-force.resx">
+      <DependentUpon>201801180812224_BookingMigration-force.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801140519419_ShipMigration1.resx">
-      <DependentUpon>201801140519419_ShipMigration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801140612080_ShipMigrationContainerToInt.resx">
-      <DependentUpon>201801140612080_ShipMigrationContainerToInt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801180814340_NewBookingMigration.resx">
+      <DependentUpon>201801180814340_NewBookingMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

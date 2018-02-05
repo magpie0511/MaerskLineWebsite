@@ -8,7 +8,8 @@ namespace MaerskLineWebsite.Models
 {
     public class Ship
     {
-        public int Id { get; set; }
+        [Key]
+        public int ShipId { get; set; }
         [Required]
         [StringLength(255)]
 

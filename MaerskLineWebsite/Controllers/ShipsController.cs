@@ -35,7 +35,9 @@ namespace MaerskLineWebsite.Controllers
             _context.Ships.Add(model);
             _context.SaveChanges();
 
-            return View("New");
+            var ships = _context.Ships.ToList();
+
+            return View("Index",ships);
         }
 
         // GET: Ship
@@ -48,7 +50,7 @@ namespace MaerskLineWebsite.Controllers
 
         public ActionResult Details(int Id)
         {
-            var ship = _context.Ships.SingleOrDefault(s => s.Id == Id);
+            var ship = _context.Ships.SingleOrDefault(s => s.ShipId == Id);
 
             if (ship == null)
             {
@@ -60,7 +62,7 @@ namespace MaerskLineWebsite.Controllers
 
         public ActionResult Edit(int Id)
         {
-            var ship = _context.Ships.SingleOrDefault(s => s.Id == Id);
+            var ship = _context.Ships.SingleOrDefault(s => s.ShipId == Id);
 
             if (ship == null)
             {
@@ -68,11 +70,27 @@ namespace MaerskLineWebsite.Controllers
             }
 
             Ship shipModelShip = new Ship();
-            shipModelShip.Id = ship.Id;
+            shipModelShip.ShipId = ship.ShipId;
             shipModelShip.Name = ship.Name;
             shipModelShip.ContainerNo = ship.ContainerNo;
             
             return View(shipModelShip);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Ship ship)
+        {
+            var shipDB = _context.Ships.SingleOrDefault(s => s.ShipId == ship.ShipId);
+
+            shipDB.ShipId = ship.ShipId;
+            shipDB.Name = ship.Name;
+            shipDB.ContainerNo = ship.ContainerNo;
+            
+            _context.SaveChanges();
+
+            var shipList = _context.Ships.ToList();
+
+            return View("Index", shipList);
         }
     }
 }

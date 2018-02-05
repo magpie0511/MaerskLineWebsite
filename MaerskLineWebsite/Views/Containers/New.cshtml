@@ -1,0 +1,26 @@
+﻿@model MaerskLineWebsite.Models.Container
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create New Container</h2>
+
+@using (Html.BeginForm("Create", "Containers"))
+{
+    <div class="form-group">
+
+        @Html.LabelFor(c => c.ContainerType)
+        @Html.TextBoxFor(c => c.ContainerType, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.ContainerWeight)
+        @Html.TextBoxFor(c => c.ContainerWeight, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">SUBMIT</button>
+
+
+}

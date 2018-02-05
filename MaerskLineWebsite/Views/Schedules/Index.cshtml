@@ -24,13 +24,13 @@
         @foreach (var schedule in Model)
         {
             <tr>
-                <td>@schedule.Id</td>
+                <td>@schedule.ScheduleId</td>
                 <td>@schedule.Destination</td>
                 <td>@schedule.Origin</td>
                 <td>@schedule.DepartureDateTime</td>
                 <td>@schedule.ArrivalDateTime</td>
 
-                <td>@Html.ActionLink("Edit", "Edit", new { id = schedule.Id })</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = schedule.ScheduleId })</td>
 
             </tr>
         }
