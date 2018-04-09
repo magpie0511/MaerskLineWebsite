@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -85,6 +86,32 @@ namespace MaerskLineWebsite.Controllers
 
         public ActionResult CreateBooking(ViewModelClass viewmodelclass)
         {
+            var tempShipID = viewmodelclass.Ship.ShipId;
+            var newContainerSpace = viewmodelclass.Container.ContainerWeight;
+
+            var tempContainerSpace = _context.Ships.Single(s => s.ShipId == tempShipID).ContainerNo;
+
+            if (tempContainerSpace - newContainerSpace < 0)
+            {
+                ViewBag.Error = "The container space is exceeded the ship's container space.";
+
+                var oldSchedule = _context.Schedules.SingleOrDefault(s => s.ScheduleId == viewmodelclass.Schedule.ScheduleId);
+                var oldShip = _context.Ships.SingleOrDefault(s => s.ShipId == viewmodelclass.Ship.ShipId);
+                var oldCustomer = _context.Customers.SingleOrDefault(c => c.CId == viewmodelclass.Customer.CId);
+
+                var viewModel = new ViewModelClass
+                {
+                    Schedule = oldSchedule,
+                    Ship = oldShip,
+                    Customer = oldCustomer
+                };
+
+                return View("SelectContainer", viewModel);
+            }
+
+            var ship = _context.Ships.Single(s => s.ShipId == viewmodelclass.Ship.ShipId);
+            ship.ContainerNo = Convert.ToInt32(tempContainerSpace - newContainerSpace);
+
             var booking = new Booking()
             {
                 ScheduleId = viewmodelclass.Schedule.ScheduleId,

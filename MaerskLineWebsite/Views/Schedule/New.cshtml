@@ -9,6 +9,9 @@
 
 @using (Html.BeginForm("Create", "Schedules"))
 {
+    @Html.HiddenFor(m => m.ScheduleId)
+
+
     <div class="form-group">
         @Html.LabelFor(m => m.Destination)
         @Html.TextBoxFor(m => m.Destination, new { @class = "form-control" })
@@ -28,4 +31,12 @@
         @Html.LabelFor(m => m.DepartureDateTime)
         @Html.TextBoxFor(m => m.DepartureDateTime, new { @class = "form-control" })
     </div>
+    <button type="submit" class="btn btn-primary">SUBMIT</button>
+
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

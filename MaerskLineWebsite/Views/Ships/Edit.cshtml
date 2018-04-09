@@ -20,6 +20,11 @@
 
     @Html.HiddenFor(m => m.ShipId)
 
-    <button type="submit" class="btn btn-primary">submit</button>
+    <button type="submit" class="btn btn-primary">SAVE</button>
 }
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

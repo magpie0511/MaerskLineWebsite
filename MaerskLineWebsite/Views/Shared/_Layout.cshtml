@@ -24,40 +24,71 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                   @if (User.Identity.IsAuthenticated)
+                   {
+                       if (User.IsInRole("Admin"))
+                       { 
+                            @*dropdown*@
+                            <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">SHIP<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                               <li>@Html.ActionLink("Add Ship", "New", "Ships")</li>
+                               <li>@Html.ActionLink("View Ship", "Index", "Ships")</li>
+                            </ul>
+                            </li>
 
-                    @*dropdown is shit*@
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">SHIP<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Add Ship", "New", "Ships")</li>
-                            <li>@Html.ActionLink("View Ship", "Index", "Ships")</li>
-                        </ul>
-                    </li>
+                            <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">SCHEDULE<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                               <li>@Html.ActionLink("Add Schedule", "New", "Schedules")</li>
+                               <li>@Html.ActionLink("View Schedule", "Index", "Schedules")</li>
+                            </ul>
+                            </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">SCHEDULE<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Add Schedule", "New", "Schedules")</li>
-                            <li>@Html.ActionLink("View Schedule", "Index", "Schedules")</li>
-                        </ul>
-                    </li>
+                           <li class="dropdown">
+                               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">BOOKING<span class="caret"></span></a>
+                               <ul class="dropdown-menu" role="menu">
+                                   <li>@Html.ActionLink("Add Booking", "SelectSchedule", "Bookings")</li>
+                                   <li>@Html.ActionLink("View Booking", "ViewBooking", "Bookings")</li>
+                               </ul>
+                           </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">CUSTOMERS<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Add Customer", "New", "Customers")</li>
-                            <li>@Html.ActionLink("View Customer", "Index", "Customers")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">BOOKING<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Add Booking", "SelectSchedule", "Bookings")</li>
-                            <li>@Html.ActionLink("View Booking", "ViewBooking", "Bookings")</li>
-                        </ul>
-                    </li>
+                           <li class="dropdown">
+                               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">CUSTOMERS<span class="caret"></span></a>
+                               <ul class="dropdown-menu" role="menu">
+                                   <li>@Html.ActionLink("Add Customer", "New", "Customers")</li>
+                                   <li>@Html.ActionLink("View Customer", "Index", "Customers")</li>
+
+                               </ul>
+                           </li>
+
+                           <li>@Html.ActionLink("Register New Agent", "Register", "Account")</li>
+
+                           
+                       }
+
+                       else
+                       {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">BOOKING<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Add Booking", "SelectSchedule", "Bookings")</li>
+                                    <li>@Html.ActionLink("View Booking", "ViewBooking", "Bookings")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="False">CUSTOMERS<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Add Customer", "New", "Customers")</li>
+                                    <li>@Html.ActionLink("View Customer", "Index", "Customers")</li>
+
+                                </ul>
+                            </li>
+                       }
+                   }
+                    
                 </ul>
-                New
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

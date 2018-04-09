@@ -10,26 +10,32 @@
 
 <table class="table table-striped table-hover">
     <thead>
-        <tr>
-            <th>Weight (lbs)</th>
-            <th>Type</th>
+    <tr>
+        <th>Weight (lbs)</th>
+        <th>Type</th>
             
-            <th></th>
-        </tr>
+        <th></th>
+    </tr>
     </thead>
 
     <tbody>
-        @foreach (var container in Model)
-        {
-            <tr>
-                <td>@</td>
-                <td>@container.ContainerWeight</td>
-                <td>@container.ContainerTypes</td> 
+    @foreach (var container in Model)
+    {
+        <tr>
+            <td>@</td>
+            <td>@container.ContainerWeight</td>
+            <td>@container.ContainerTypes</td> 
                 
               
-                <td>@Html.ActionLink("Edit", "Edit", new { containerId = container.ContainerId })</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { containerId = container.ContainerId })</td>
 
-            </tr>
-        }
+        </tr>
+    }
     </tbody>
 </table>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

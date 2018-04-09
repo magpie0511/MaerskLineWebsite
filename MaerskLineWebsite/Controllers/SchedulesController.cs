@@ -36,7 +36,9 @@ namespace MaerskLineWebsite.Controllers
             _context.Schedules.Add(model);
             _context.SaveChanges();
 
-            return View("New");
+            var schedules = _context.Schedules.ToList();
+
+            return View("Index", schedules);
         }
 
         public ActionResult Index()
