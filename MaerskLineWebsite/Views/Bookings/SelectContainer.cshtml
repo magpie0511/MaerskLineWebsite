@@ -34,7 +34,7 @@
     </tr>
     <tr>
         <td>
-           @Model.Schedule.ScheduleId
+            @Model.Schedule.ScheduleId
 
         </td>
         <td>
@@ -80,13 +80,16 @@
 <table class="table">
     <tr>
         <th>
-            Name
+            First Name
+        </th>
+        <th>
+            Last Name
         </th>
         <th>
             Email
         </th>
         <th>
-            ContactNo
+            Contact No
         </th>
     </tr>
     <tr>
@@ -143,4 +146,10 @@
             </div>
         </div>
     </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

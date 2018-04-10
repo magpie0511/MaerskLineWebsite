@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm("Create", "Containers"))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
     <div class="form-group">
 
         @Html.LabelFor(c => c.ContainerType)
@@ -20,7 +22,7 @@
         @Html.TextBoxFor(c => c.ContainerWeight, new { @class = "form-control" })
     </div>
 
-    <button type="submit" class="btn btn-primary">SUBMIT</button>
+    <button type="submit" class="btn btn-success">SUBMIT</button>
 
 
 }

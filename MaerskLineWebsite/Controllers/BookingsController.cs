@@ -84,12 +84,14 @@ namespace MaerskLineWebsite.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateBooking(ViewModelClass viewmodelclass)
         {
-            var tempShipID = viewmodelclass.Ship.ShipId;
+            var tempShipId = viewmodelclass.Ship.ShipId;
             var newContainerSpace = viewmodelclass.Container.ContainerWeight;
 
-            var tempContainerSpace = _context.Ships.Single(s => s.ShipId == tempShipID).ContainerNo;
+            var tempContainerSpace = _context.Ships.Single(s => s.ShipId == tempShipId).ContainerNo;
 
             if (tempContainerSpace - newContainerSpace < 0)
             {
@@ -117,7 +119,7 @@ namespace MaerskLineWebsite.Controllers
                 ScheduleId = viewmodelclass.Schedule.ScheduleId,
                 ShipId = viewmodelclass.Ship.ShipId,
                 Cid = viewmodelclass.Customer.CId,
-                AgentBooked = "Seng Yong"
+                AgentBooked = User.Identity.Name
             };
 
             //_context.Bookings.Add(booking);

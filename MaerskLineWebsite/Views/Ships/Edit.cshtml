@@ -8,6 +8,8 @@
 
 @using (Html.BeginForm("Update", "Ships", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
@@ -26,8 +28,5 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-    
-    
-
 
 }

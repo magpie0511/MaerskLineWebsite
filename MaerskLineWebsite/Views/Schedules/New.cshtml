@@ -7,8 +7,12 @@
 
 <h2>Create New Schedule</h2>
 
-@using (Html.BeginForm("Create", "Schedules", FormMethod.Post)) 
+@using (Html.BeginForm("Create", "Schedules", FormMethod.Post))
 {
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
     <div class="form-group">
         @Html.LabelFor(m => m.Destination)
         @Html.TextBoxFor(m => m.Destination, new { @class = "form-control" })
@@ -21,15 +25,15 @@
 
     <div class="form-group input-group date">
         @Html.LabelFor(m => m.ArrivalDateTime)
-        @Html.TextBoxFor(m => m.ArrivalDateTime, new {id="arrivalTime", @class = "form-control" })
+        @Html.TextBoxFor(m => m.ArrivalDateTime, new { id = "arrivalTime", @class = "form-control" })
     </div>
 
     <div class="form-group input-group date">
         @Html.LabelFor(m => m.DepartureDateTime)
-        @Html.TextBoxFor(m => m.DepartureDateTime, new {id="departureTime", @class = "form-control" })
+        @Html.TextBoxFor(m => m.DepartureDateTime, new { id = "departureTime", @class = "form-control" })
     </div>
 
-    <button type="submit" class="btn btn-primary">submit</button>
+    <button type="submit" class="btn btn-success">SUBMIT</button>
 
 }
 

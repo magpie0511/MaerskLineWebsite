@@ -9,6 +9,9 @@
 
 @using (Html.BeginForm("Create", "Customers"))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
     <div class="form-group">
         @Html.LabelFor(c => c.FName)
         @Html.TextBoxFor(c => c.FName, new { @class = "form-control" })
@@ -28,7 +31,7 @@
         @Html.LabelFor(c => c.ContactNo)
         @Html.TextBoxFor(c => c.ContactNo, new { @class = "form-control" })
     </div>
-    <button type="submit" class="btn btn-primary">SUBMIT</button>
+    <button type="submit" class="btn btn-success">SUBMIT</button>
 
 }
 

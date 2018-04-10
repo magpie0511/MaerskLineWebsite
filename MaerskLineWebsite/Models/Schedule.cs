@@ -16,11 +16,14 @@ namespace MaerskLineWebsite.Models
         [StringLength(255)]
         public string Destination { get; set; }
 
+        [Required]
         public string Origin{ get; set; }
 
+        [Required]
         [Display(Name = "Departure Date & Time")]
         public DateTime DepartureDateTime { get; set; }
 
+        [Required]
         [Display(Name = "Arrival Date & Time")]
         public DateTime ArrivalDateTime { get; set; }
         

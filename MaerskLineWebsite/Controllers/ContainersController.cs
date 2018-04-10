@@ -47,6 +47,7 @@ namespace MaerskLineWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Container model) //it will straight create and save into the database. Then, a partial view will shown stating the schedules are created successfully.
         {
             _context.Containers.Add(model);

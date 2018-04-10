@@ -31,6 +31,7 @@ namespace MaerskLineWebsite.Controllers
         }
 
         [HttpPost] //it will straight create and save into the database. Then, a partial view will shown stating the schedules are created successfully.
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Schedule model)
         {
             _context.Schedules.Add(model);
@@ -80,6 +81,7 @@ namespace MaerskLineWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Schedule schedule)
         {
             var scheDB = _context.Schedules.SingleOrDefault(s => s.ScheduleId == schedule.ScheduleId);

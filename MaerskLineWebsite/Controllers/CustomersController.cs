@@ -36,6 +36,7 @@ namespace MaerskLineWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Customer model) //it will straight create and save into the database. Then, a partial view will shown stating the schedules are created successfully.
         {
             _context.Customers.Add(model);
@@ -76,6 +77,7 @@ namespace MaerskLineWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Customer customer)
         {
             var custDB = _context.Customers.SingleOrDefault(c => c.CId == customer.CId);

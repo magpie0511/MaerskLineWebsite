@@ -8,6 +8,11 @@
 
 <h2>Schedule</h2>
 
+@using (Html.BeginForm("New", "Schedules"))
+{
+    <button class="btn btn-success">Create New Schedule</button>
+}
+
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -23,16 +28,16 @@
     <tbody>
         @foreach (var schedule in Model)
         {
-            <tr>
-                <td>@schedule.ScheduleId</td>
-                <td>@schedule.Destination</td>
-                <td>@schedule.Origin</td>
-                <td>@schedule.DepartureDateTime</td>
-                <td>@schedule.ArrivalDateTime</td>
+        <tr>
+            <td>@schedule.ScheduleId</td>
+            <td>@schedule.Destination</td>
+            <td>@schedule.Origin</td>
+            <td>@schedule.DepartureDateTime</td>
+            <td>@schedule.ArrivalDateTime</td>
+            <br />
+            <td>@Html.ActionLink("Edit", "Edit", new { id = schedule.ScheduleId }, new { @class = "btn btn-success btn-xs" })</td>
 
-                <td>@Html.ActionLink("Edit", "Edit", new { id = schedule.ScheduleId })</td>
-
-            </tr>
+        </tr>
         }
     </tbody>
 </table>
